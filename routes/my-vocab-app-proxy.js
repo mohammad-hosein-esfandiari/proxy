@@ -124,11 +124,11 @@ router.get("/proxy/my-vocab-app", async (req, res) => {
 
       dictData.phonetic = dict.phonetic || dict.phonetics?.[0]?.text || "";
       dictData.audio = dict.phonetics?.find(p => p.audio)?.audio || "";
-      dictData.partOfSpeech = dict.meanings?.[0]?.partOfSpeech || "";
+    
 
     } catch (dictError) {
       console.warn(`Dictionary API failed for '${word}':`, dictError.message);
-      dictData = { phonetic: "", audio: "", partOfSpeech: "" }; // fallback
+      dictData = { phonetic: "", audio: "" }; // fallback
     }
 
     // 6. Final response
@@ -139,7 +139,7 @@ router.get("/proxy/my-vocab-app", async (req, res) => {
         ...aiData,
         phonetic: dictData.phonetic,
         audio: dictData.audio,
-        partOfSpeech: dictData.partOfSpeech,
+        
       },
     });
 
