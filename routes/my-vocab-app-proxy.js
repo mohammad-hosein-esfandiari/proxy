@@ -1,13 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const cors = require("cors");
 const axios = require("axios");
 const ModelClient = require("@azure-rest/ai-inference").default;
 const { AzureKeyCredential } = require("@azure/core-auth");
 const { isUnexpected } = require("@azure-rest/ai-inference");
 
-// Middleware
-router.use(cors());
 
 // Validation helper
 const isValidWord = (word) => {
