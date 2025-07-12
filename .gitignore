@@ -67,3 +67,8 @@ test_output/
 
 # Misc
 *.tgz
+
+# Do NOT ignore these for Vercel
+!vercel.json
+!api/
+!routes/
