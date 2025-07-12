@@ -13,8 +13,8 @@ const proxyRoutes = require("./routes/my-vocab-app-proxy");
 app.use("/api", proxyRoutes);
 
 // ❌ نباید app.listen() داشته باشی
-// module.exports.handler = serverless(app);
-// const PORT = process.env.PORT || 3000;
+module.exports.handler = serverless(app);
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Proxy server is running on port http://localhost:${PORT}`);
 }); 
