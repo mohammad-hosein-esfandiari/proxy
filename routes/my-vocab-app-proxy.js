@@ -52,26 +52,47 @@ router.get("/proxy/my-vocab-app", async (req, res) => {
     - A short Persian meaning.
     - 3 English example sentences with Persian translations.
     
+    Also, generate a quiz object with:
+    - A Persian question asking for the meaning of the word.
+    - The original word as "word".
+    - An array of 4 options, each as an object with:
+      - "id": a unique option ID (e.g. "a", "b", "c", "d")
+      - "text": the Persian text of the option
+    - A field "answer" that contains only the correct option's id.
+    
     Respond strictly in the following JSON format:
     
     {
       "word": "${word}",
-      "correct": true or false,
+      "correct": true,
       "partOfSpeech": "اسم", // or فعل, صفت, ...
       "meaning": "...",
       "examples": [
         { "english": "Example 1", "persian": "مثال ۱" },
         { "english": "Example 2", "persian": "مثال ۲" },
         { "english": "Example 3", "persian": "مثال ۳" }
-      ]
+      ],
+      "quiz": {
+        "question": "معنای کلمه «${word}» چیست؟",
+        "word": "${word}",
+        "options": [
+          { "id": "a", "text": "گزینه ۱" },
+          { "id": "b", "text": "گزینه ۲" },
+          { "id": "c", "text": "گزینه ۳" },
+          { "id": "d", "text": "گزینه ۴" }
+        ],
+        "answer": "c"
+      }
     }
     
     If the word is not spelled correctly, just respond:
+    
     {
       "word": "${word}",
       "correct": false
     }
     `;
+    
     
 
     const response = await client.path("/chat/completions").post({
