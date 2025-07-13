@@ -39,6 +39,8 @@ router.get("/proxy/my-vocab-app", async (req, res) => {
 
   try {
     // 3. Request to Azure AI
+
+    // this api has 150 request per day limit
     const client = ModelClient(endpoint, new AzureKeyCredential(token));
 
     const question = `
